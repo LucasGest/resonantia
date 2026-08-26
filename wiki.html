@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resonantia — Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#120E0C;
+    --panel:#1D1714;
+    --panel-2:#251D18;
+    --line:#3A2C25;
+    --ink:#EDE6DD;
+    --ink-dim:#A79A8D;
+    --chrys:#74CE7E;
+    --ferr:#4FA6E8;
+    --sylv:#8CB25E;
+    --cind:#E97A3D;
+    --reson:#B98CE0;
+    --disp:'Rajdhani', sans-serif;
+    --body:'IBM Plex Sans', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--chrys); color:#0C0A08;}
+
+  a{color:inherit;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    background:rgba(18,14,12,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:var(--disp); font-weight:700; font-size:20px; letter-spacing:0.04em;}
+  .brand span{color:var(--chrys);}
+  .navlinks{display:flex; gap:22px; font-size:14px; color:var(--ink-dim);}
+  .navlinks a{text-decoration:none; transition:color .2s;}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a:focus-visible{outline:2px solid var(--chrys); outline-offset:3px; border-radius:2px;}
+
+  @media (max-width:720px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:88px 24px 64px;
+    text-align:center;
+    overflow:hidden;
+  }
+  #heroGlow{
+    position:absolute; inset:-20% -10% auto -10%; height:600px;
+    pointer-events:none; z-index:0; transition:background .3s ease;
+  }
+  .hero-inner{position:relative; z-index:1; max-width:760px; margin:0 auto;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.18em;
+    color:var(--ink-dim); text-transform:uppercase; margin-bottom:18px;
+  }
+  h1.title{
+    font-family:var(--disp); font-weight:700;
+    font-size:clamp(44px, 8vw, 88px);
+    line-height:0.95;
+    letter-spacing:0.01em;
+    margin-bottom:16px;
+  }
+  .tagline{
+    font-size:17px; color:var(--ink-dim); max-width:520px; margin:0 auto 40px;
+  }
+
+  .tuner{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:24px 28px 20px;
+    max-width:640px; margin:0 auto;
+  }
+  .tuner svg{width:100%; height:120px; display:block;}
+  .tuner-row{display:flex; align-items:center; gap:16px; margin-top:8px;}
+  .tuner-row input[type=range]{
+    flex:1; accent-color:var(--chrys); height:4px;
+  }
+  #freqValue{
+    font-family:var(--mono); font-weight:500; font-size:15px;
+    min-width:34px; text-align:right;
+  }
+  #freqStatus{
+    font-family:var(--mono); font-size:12.5px; margin-top:10px; color:var(--ink-dim);
+    letter-spacing:0.02em;
+  }
+  .tuner-label{font-family:var(--mono); font-size:11px; color:var(--ink-dim); letter-spacing:0.1em; text-transform:uppercase;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:76px 24px; max-width:1080px; margin:0 auto;}
+  .section-head{margin-bottom:40px; max-width:640px;}
+  .section-eyebrow{
+    font-family:var(--mono); font-size:12px; color:var(--ink-dim);
+    letter-spacing:0.14em; text-transform:uppercase; margin-bottom:10px;
+  }
+  h2{
+    font-family:var(--disp); font-weight:700; font-size:clamp(30px,4vw,42px);
+    letter-spacing:0.01em; margin-bottom:14px;
+  }
+  .section-desc{color:var(--ink-dim); font-size:15.5px;}
+
+  /* ---------- WHY ---------- */
+  .why-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:start;}
+  @media (max-width:760px){ .why-grid{grid-template-columns:1fr;} }
+  .why-grid p{color:var(--ink-dim); font-size:15.5px; margin-bottom:16px;}
+  .why-grid strong{color:var(--ink); font-weight:600;}
+  .why-quote{
+    border-left:2px solid var(--chrys); padding-left:18px;
+    font-family:var(--disp); font-size:22px; font-weight:600; color:var(--ink);
+  }
+
+  /* ---------- PROGRESSION RAIL ---------- */
+  .rail{position:relative; padding-left:36px;}
+  .rail::before{
+    content:''; position:absolute; left:11px; top:8px; bottom:8px; width:2px;
+    background:linear-gradient(var(--chrys), var(--ferr) 33%, var(--sylv) 62%, var(--cind) 85%, var(--reson));
+  }
+  .tier{position:relative; padding-bottom:44px;}
+  .tier:last-child{padding-bottom:0;}
+  .tier-dot{
+    position:absolute; left:-36px; top:2px; width:24px; height:24px; border-radius:50%;
+    background:var(--panel); border:2px solid var(--tier-color, var(--ink-dim));
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:11px; color:var(--tier-color, var(--ink-dim));
+  }
+  .tier-status{
+    display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em;
+    text-transform:uppercase; padding:2px 8px; border-radius:20px; margin-left:10px;
+    border:1px solid var(--line); color:var(--ink-dim); vertical-align:middle;
+  }
+  .tier-status.done{color:var(--chrys); border-color:var(--chrys);}
+  .tier-status.wip{color:var(--cind); border-color:var(--cind);}
+  .tier-status.next{color:var(--ink-dim);}
+  .tier h3{font-family:var(--disp); font-size:22px; font-weight:600; display:inline;}
+  .tier p{color:var(--ink-dim); font-size:14.5px; margin-top:8px; max-width:560px;}
+
+  /* ---------- CARD GRID (ores) ---------- */
+  .card-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px;}
+  .ore-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:22px; position:relative; overflow:hidden;
+  }
+  .ore-card::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--c);
+  }
+  .ore-name{font-family:var(--disp); font-weight:600; font-size:20px; margin-bottom:4px;}
+  .ore-sub{font-family:var(--mono); font-size:11.5px; color:var(--c); letter-spacing:0.05em; margin-bottom:14px;}
+  .ore-meta{font-size:13.5px; color:var(--ink-dim); margin-bottom:6px;}
+  .ore-meta b{color:var(--ink); font-weight:500;}
+  .chain{display:flex; align-items:center; gap:6px; margin-top:14px; flex-wrap:wrap;}
+  .chain-step{font-family:var(--mono); font-size:11px; background:var(--panel-2); border:1px solid var(--line); border-radius:6px; padding:4px 8px; color:var(--ink-dim);}
+  .chain-arrow{color:var(--ink-dim); font-size:12px;}
+
+  /* ---------- MACHINE CARDS ---------- */
+  .machine-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:26px; margin-bottom:20px;
+    display:grid; grid-template-columns:1.1fr 1fr; gap:28px; align-items:center;
+  }
+  @media (max-width:760px){ .machine-card{grid-template-columns:1fr;} }
+  .machine-name{font-family:var(--disp); font-weight:600; font-size:23px; margin-bottom:8px;}
+  .machine-desc{font-size:14.5px; color:var(--ink-dim); margin-bottom:14px;}
+  .stat-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:12px;}
+  .stat{font-family:var(--mono); font-size:11.5px; color:var(--ink-dim);}
+  .stat b{display:block; color:var(--ink); font-size:14px; font-weight:500;}
+
+  /* ---------- RECIPE GRID (crafting-style) ---------- */
+  .recipe{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .grid3{
+    display:grid; grid-template-columns:repeat(3, 46px); grid-template-rows:repeat(3, 46px);
+    gap:4px; background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:6px;
+  }
+  .cell{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:#171210; border-radius:5px; border:1px solid #2A211C;
+  }
+  .cell .ic{width:20px; height:20px; border-radius:4px; margin-bottom:2px;}
+  .cell .cap{font-family:var(--mono); font-size:7px; color:var(--ink-dim); letter-spacing:0.02em;}
+  .arrow-icon{color:var(--ink-dim); font-size:20px; flex-shrink:0;}
+  .result-cell{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    width:54px; height:54px; background:#171210; border:1px solid var(--line); border-radius:8px;
+  }
+  .result-cell .ic{width:24px; height:24px; border-radius:5px; margin-bottom:3px;}
+  .result-cell .cap{font-family:var(--mono); font-size:8px; color:var(--ink);}
+  .result-name{font-family:var(--mono); font-size:12px; color:var(--ink); margin-left:2px;}
+
+  .ic.frag-chrys{background:linear-gradient(135deg,#3f6a45,#8fe197);}
+  .ic.frag-ferr{background:linear-gradient(135deg,#25405c,#6cc0f0);}
+  .ic.frag-sylv{background:linear-gradient(135deg,#3c4a2a,#a9c97e);}
+  .ic.frag-cind{background:linear-gradient(135deg,#5c2a12,#f2965a);}
+  .ic.raw-chrys{background:linear-gradient(135deg,#2f3a30,#6fa578);}
+  .ic.raw-ferr{background:linear-gradient(135deg,#1b1e22,#4a5560);}
+  .ic.raw-sylv{background:linear-gradient(135deg,#2a2f22,#77835a);}
+  .ic.cobble{background:linear-gradient(135deg,#4a4a4a,#7c7c7c);}
+  .ic.redstone{background:radial-gradient(circle at 35% 35%,#ff8a6a,#b3241b);}
+  .ic.redstoneblock{background:linear-gradient(135deg,#8a1c14,#c73326);}
+  .ic.amethyst{background:linear-gradient(135deg,#5c3f8a,#b98ce0);}
+  .ic.concasseur{background:linear-gradient(135deg,#2c2c30,#65656d);}
+  .ic.battery{background:linear-gradient(135deg,#1c2530,#4fa6e8);}
+  .ic.cable{background:linear-gradient(135deg,#1c1e21,#4fa6e8);}
+  .ic.pickaxe{background:linear-gradient(135deg,#5a4636,#c9d3da);}
+  .ic.key{background:linear-gradient(135deg,#333,#8cd0f0);}
+  .ic.empty{background:transparent;}
+
+  /* ---------- MACHINE RECIPE INPUTS (non-grid, 3 slots) ---------- */
+  .slot-row{display:flex; align-items:center; gap:10px;}
+  .slot3{display:flex; gap:6px; background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:6px;}
+
+  /* ---------- ENERGY ---------- */
+  .energy-flow{
+    display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:32px;
+    margin-top:8px;
+  }
+  .flow-node{
+    text-align:center; font-family:var(--mono); font-size:12px; color:var(--ink-dim);
+  }
+  .flow-node .box{
+    width:64px; height:64px; border-radius:10px; margin:0 auto 8px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--disp); font-weight:600; font-size:11px; color:#0C0A08;
+  }
+  .flow-arrow{color:var(--ink-dim); font-size:18px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line); padding:36px 24px; text-align:center;
+    color:var(--ink-dim); font-size:13px;
+  }
+  footer .brand{justify-content:center; display:flex; margin-bottom:8px;}
+
+  .legend-note{font-size:12.5px; color:var(--ink-dim); margin-top:10px; font-style:italic;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">RESON<span>ANTIA</span></div>
+  <div class="navlinks">
+    <a href="#progression">Progression</a>
+    <a href="#minerais">Minerais</a>
+    <a href="#machines">Machines</a>
+    <a href="#energie">Énergie</a>
+    <a href="#recettes">Recettes</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div id="heroGlow"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Guide non-officiel · NeoForge 1.21.1</div>
+    <h1 class="title">RESONANTIA</h1>
+    <p class="tagline">Un mod d'exploration et de technologie construit autour d'une seule idée : accorder la bonne fréquence transforme tout.</p>
+
+    <div class="tuner">
+      <svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
+        <path id="wavePath" d="" fill="none" stroke="#5B5049" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div class="tuner-row">
+        <span class="tuner-label">0</span>
+        <input type="range" id="freqRange" min="0" max="100" value="50" aria-label="Régler la fréquence">
+        <span class="tuner-label">100</span>
+        <span id="freqValue">50</span>
+      </div>
+      <div id="freqStatus">Accordé — Chrysolithe (×2 vitesse)</div>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-eyebrow">Pourquoi ce mod</div>
+      <p>Beaucoup de mods tech partagent au fond la même mécanique : minerai → lingot → machine → énergie générique. Resonantia part d'une autre base : <strong>chaque minerai a une fréquence qui lui est propre</strong>, et accorder une machine dessus la rend deux fois plus efficace.</p>
+      <p>Aucune machine n'est jamais punie pour être mal réglée — l'accordage est un bonus à chercher, jamais un piège à éviter. Essaie le curseur ci-dessus : il réagit exactement comme une machine en jeu.</p>
+    </div>
+    <div class="why-quote">« Une machine mal réglée fonctionne quand même. Bien accordée, elle vole. »</div>
+  </div>
+</section>
+
+<section id="progression">
+  <div class="section-head">
+    <div class="section-eyebrow">Feuille de route</div>
+    <h2>Où en est le mod</h2>
+    <p class="section-desc">Cinq paliers, du premier minerai jusqu'à l'objet qui clôturera la progression.</p>
+  </div>
+
+  <div class="rail">
+    <div class="tier" style="--tier-color:var(--chrys)">
+      <span class="tier-dot">1</span>
+      <h3>Chrysolithe</h3><span class="tier-status done">Terminé</span>
+      <p>Minerai de base, commun dans tout l'Overworld (Y 0–80). Fréquence 50 — déjà accordé par défaut. C'est le point de départ de toute partie.</p>
+    </div>
+    <div class="tier" style="--tier-color:var(--ferr)">
+      <span class="tier-dot">2</span>
+      <h3>Ferrite Noire, énergie & Concasseur</h3><span class="tier-status done">Terminé</span>
+      <p>Deuxième minerai (thème magnétisme), première machine, et tout le système FE : Générateur, Batterie, Câbles à connexions dynamiques.</p>
+    </div>
+    <div class="tier" style="--tier-color:var(--sylv)">
+      <span class="tier-dot">3</span>
+      <h3>Sylvanite, Assembleur & Pioche Résonante</h3><span class="tier-status done">Terminé</span>
+      <p>Minerai rare façon débris antiques (forêts/marais uniquement), machine à 3 ingrédients, et le premier outil du mod.</p>
+    </div>
+    <div class="tier" style="--tier-color:var(--cind)">
+      <span class="tier-dot">4</span>
+      <h3>Cindrite</h3><span class="tier-status wip">En cours</span>
+      <p>Quatrième minerai, thème Nether/thermique. Résistant au feu et aux explosions, cohérent avec son environnement.</p>
+    </div>
+    <div class="tier" style="--tier-color:var(--reson)">
+      <span class="tier-dot">5</span>
+      <h3>La Faille & Cœur de Résonance Absolue</h3><span class="tier-status next">À venir</span>
+      <p>Nébulite, portail vers une dimension exclusive au mod, Résonium, et l'objet qui clôturera la progression de Resonantia.</p>
+    </div>
+  </div>
+</section>
+
+<section id="minerais">
+  <div class="section-head">
+    <div class="section-eyebrow">Ressources</div>
+    <h2>Les minerais</h2>
+    <p class="section-desc">Chaque minerai suit la même chaîne : brut → fragment (four ou Concasseur) → bloc de stockage compact.</p>
+  </div>
+  <div class="card-grid">
+    <div class="ore-card" style="--c:var(--chrys)">
+      <div class="ore-name">Chrysolithe</div>
+      <div class="ore-sub">FRÉQUENCE 50 · ACCORDÉE PAR DÉFAUT</div>
+      <div class="ore-meta">Où : <b>Overworld, Y 0 à 80</b>, tous biomes</div>
+      <div class="ore-meta">Identité : minerai de base, stable et accessible</div>
+      <div class="chain">
+        <span class="chain-step">Brute</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Four / Concasseur</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Fragment</span>
+      </div>
+    </div>
+    <div class="ore-card" style="--c:var(--ferr)">
+      <div class="ore-name">Ferrite Noire</div>
+      <div class="ore-sub">FRÉQUENCE 30</div>
+      <div class="ore-meta">Où : <b>Overworld, Y -32 à 32</b>, tous biomes</div>
+      <div class="ore-meta">Identité : magnétisme, base de l'automatisation</div>
+      <div class="chain">
+        <span class="chain-step">Brute</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Four / Concasseur</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Fragment</span>
+      </div>
+    </div>
+    <div class="ore-card" style="--c:var(--sylv)">
+      <div class="ore-name">Sylvanite</div>
+      <div class="ore-sub">FRÉQUENCE 70 · RARE</div>
+      <div class="ore-meta">Où : <b>Forêts et marais uniquement</b>, Y 0 à 32</div>
+      <div class="ore-meta">Identité : caché façon débris antiques, pioche fer minimum</div>
+      <div class="chain">
+        <span class="chain-step">Brute</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Four / Concasseur</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Fragment</span>
+      </div>
+    </div>
+    <div class="ore-card" style="--c:var(--cind)">
+      <div class="ore-name">Cindrite</div>
+      <div class="ore-sub">EN COURS DE DÉVELOPPEMENT</div>
+      <div class="ore-meta">Où : <b>Nether, Y 10 à 100</b></div>
+      <div class="ore-meta">Identité : thermique, résistant au feu et aux explosions</div>
+      <div class="chain">
+        <span class="chain-step">Brute</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Four / Concasseur</span><span class="chain-arrow">→</span>
+        <span class="chain-step">Fragment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="machines">
+  <div class="section-head">
+    <div class="section-eyebrow">Technologie</div>
+    <h2>Les machines</h2>
+    <p class="section-desc">Toutes fonctionnent au FE (Flux Résonant) — via Batterie portée à la main, ou Câbles automatiques.</p>
+  </div>
+
+  <div class="machine-card">
+    <div>
+      <div class="machine-name">Concasseur Résonant</div>
+      <div class="machine-desc">Transforme un minerai brut en 2 fragments (au lieu d'1 au four), sans combustible — juste du FE. Sensible à la fréquence.</div>
+      <div class="stat-row">
+        <div class="stat"><b>20 FE/tick</b>consommation</div>
+        <div class="stat"><b>5s</b>temps de base</div>
+        <div class="stat"><b>×2</b>si bien accordé</div>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="grid3">
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic cobble"></div><span class="cap">Cob</span></div>
+        <div class="cell"><div class="ic frag-chrys"></div><span class="cap">Ch·F</span></div>
+        <div class="cell"><div class="ic cobble"></div><span class="cap">Cob</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+      </div>
+      <span class="arrow-icon">→</span>
+      <div class="result-cell"><div class="ic concasseur"></div><span class="cap">Con</span></div>
+    </div>
+  </div>
+
+  <div class="machine-card">
+    <div>
+      <div class="machine-name">Générateur Résonant</div>
+      <div class="machine-desc">Brûle n'importe quel combustible de four classique pour produire du FE. Charge directement une Batterie insérée dans son 2ᵉ emplacement.</div>
+      <div class="stat-row">
+        <div class="stat"><b>10 000 FE</b>capacité</div>
+        <div class="stat"><b>40 FE/tick</b>production</div>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="grid3">
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic cobble"></div><span class="cap">Cob</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic cobble"></div><span class="cap">Cob</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic redstone"></div><span class="cap">Rs</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+      </div>
+      <span class="arrow-icon">→</span>
+      <div class="result-cell"><div class="ic battery" style="background:linear-gradient(135deg,#2c2c30,#65656d)"></div><span class="cap">Gén</span></div>
+    </div>
+  </div>
+
+  <div class="machine-card">
+    <div>
+      <div class="machine-name">Assembleur Résonant</div>
+      <div class="machine-desc">Combine jusqu'à 3 ingrédients différents — la première machine de "craft avancé" du mod. C'est ici qu'est fabriquée la Pioche Résonante.</div>
+      <div class="stat-row">
+        <div class="stat"><b>30 FE/tick</b>consommation</div>
+        <div class="stat"><b>6s</b>temps de base</div>
+        <div class="stat"><b>3</b>emplacements</div>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="grid3">
+        <div class="cell"><div class="ic frag-sylv"></div><span class="cap">Sy·F</span></div>
+        <div class="cell"><div class="ic frag-sylv"></div><span class="cap">Sy·F</span></div>
+        <div class="cell"><div class="ic frag-sylv"></div><span class="cap">Sy·F</span></div>
+        <div class="cell"><div class="ic concasseur"></div><span class="cap">Con</span></div>
+        <div class="cell"><div class="ic battery"></div><span class="cap">Bat</span></div>
+        <div class="cell"><div class="ic concasseur"></div><span class="cap">Con</span></div>
+        <div class="cell"><div class="ic frag-sylv"></div><span class="cap">Sy·F</span></div>
+        <div class="cell"><div class="ic frag-sylv"></div><span class="cap">Sy·F</span></div>
+        <div class="cell"><div class="ic frag-sylv"></div><span class="cap">Sy·F</span></div>
+      </div>
+      <span class="arrow-icon">→</span>
+      <div class="result-cell"><div class="ic" style="background:linear-gradient(135deg,#4a3a2c,#8a7358)"></div><span class="cap">Asb</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="energie">
+  <div class="section-head">
+    <div class="section-eyebrow">Infrastructure</div>
+    <h2>Le système énergétique</h2>
+    <p class="section-desc">FE (Forge Energy) sous le capot — nommé « Flux Résonant » côté lore — pour rester compatible avec le reste de l'écosystème NeoForge.</p>
+  </div>
+  <div class="energy-flow">
+    <div class="flow-node">
+      <div class="box" style="background:var(--cind)">GÉN</div>
+      Générateur
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node">
+      <div class="box" style="background:var(--ferr)">CÂB</div>
+      Câbles
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node">
+      <div class="box" style="background:var(--chrys)">CON</div>
+      Machines
+    </div>
+    <span class="flow-arrow" style="opacity:.4">ou</span>
+    <div class="flow-node">
+      <div class="box" style="background:var(--reson)">BAT</div>
+      Batterie portée à la main
+    </div>
+  </div>
+  <p class="legend-note">Les Câbles Résonants se connectent visuellement à toute machine ou câble adjacent — pas besoin de les orienter, ils s'adaptent automatiquement.</p>
+</section>
+
+<section id="recettes">
+  <div class="section-head">
+    <div class="section-eyebrow">Référence</div>
+    <h2>Autres recettes utiles</h2>
+    <p class="section-desc">Le reste des objets qu'on croise régulièrement en jeu.</p>
+  </div>
+
+  <div class="machine-card">
+    <div>
+      <div class="machine-name">Batterie Résonante</div>
+      <div class="machine-desc">50 000 FE de capacité, 500 FE/tick de transfert. Se charge dans un Générateur, s'insère dans n'importe quelle machine.</div>
+    </div>
+    <div class="recipe">
+      <div class="grid3">
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic redstoneblock"></div><span class="cap">Rs■</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+      </div>
+      <span class="arrow-icon">→</span>
+      <div class="result-cell"><div class="ic battery"></div><span class="cap">Bat</span></div>
+    </div>
+  </div>
+
+  <div class="machine-card">
+    <div>
+      <div class="machine-name">Clé de Fréquence</div>
+      <div class="machine-desc">Clic droit sur une machine = +10, Shift+clic droit = -10. C'est l'outil qui permet d'accorder tes machines.</div>
+    </div>
+    <div class="recipe">
+      <div class="grid3">
+        <div class="cell"><div class="ic empty"></div></div>
+        <div class="cell"><div class="ic frag-chrys"></div><span class="cap">Ch·F</span></div>
+        <div class="cell"><div class="ic empty"></div></div>
+        <div class="cell"><div class="ic empty"></div></div>
+        <div class="cell"><div class="ic amethyst"></div><span class="cap">Am</span></div>
+        <div class="cell"><div class="ic empty"></div></div>
+        <div class="cell"><div class="ic frag-chrys"></div><span class="cap">Ch·F</span></div>
+        <div class="cell"><div class="ic empty"></div></div>
+        <div class="cell"><div class="ic frag-chrys"></div><span class="cap">Ch·F</span></div>
+      </div>
+      <span class="arrow-icon">→</span>
+      <div class="result-cell"><div class="ic key"></div><span class="cap">Clé</span></div>
+    </div>
+  </div>
+
+  <div class="machine-card">
+    <div>
+      <div class="machine-name">Câble Résonant</div>
+      <div class="machine-desc">Recette sans forme (l'ordre des cases n'a pas d'importance) — donne 8 câbles d'un coup.</div>
+    </div>
+    <div class="recipe">
+      <div class="slot3">
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic redstone"></div><span class="cap">Rs</span></div>
+        <div class="cell"><div class="ic redstone"></div><span class="cap">Rs</span></div>
+      </div>
+      <span class="arrow-icon">→</span>
+      <div class="result-cell"><div class="ic cable"></div><span class="cap">×8</span></div>
+    </div>
+  </div>
+
+  <div class="machine-card">
+    <div>
+      <div class="machine-name">Pioche Résonante</div>
+      <div class="machine-desc">Se fabrique dans l'Assembleur (pas la table de craft) — 3 emplacements distincts, un fragment de chaque minerai de base.</div>
+      <div class="stat-row">
+        <div class="stat"><b>Diamant</b>niveau de minage</div>
+        <div class="stat"><b>750</b>utilisations</div>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="slot3">
+        <div class="cell"><div class="ic frag-chrys"></div><span class="cap">Ch·F</span></div>
+        <div class="cell"><div class="ic frag-ferr"></div><span class="cap">Fe·F</span></div>
+        <div class="cell"><div class="ic frag-sylv"></div><span class="cap">Sy·F</span></div>
+      </div>
+      <span class="arrow-icon">→</span>
+      <div class="result-cell"><div class="ic pickaxe"></div><span class="cap">Pic</span></div>
+    </div>
+    <div class="legend-note" style="width:100%">Assemblage dans l'Assembleur Résonant, pas une recette de table de craft classique.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">RESON<span style="color:var(--chrys)">ANTIA</span></div>
+  Mod Minecraft Java Edition · NeoForge 1.21.1 · par Lucanemone
+</footer>
+
+<script>
+  const freqInput = document.getElementById('freqRange');
+  const freqValue = document.getElementById('freqValue');
+  const freqStatus = document.getElementById('freqStatus');
+  const wavePath = document.getElementById('wavePath');
+  const heroGlow = document.getElementById('heroGlow');
+
+  const targets = [
+    {freq:30, color:'#4FA6E8', name:'Ferrite Noire'},
+    {freq:50, color:'#74CE7E', name:'Chrysolithe'},
+    {freq:70, color:'#8CB25E', name:'Sylvanite'},
+  ];
+
+  let phase = 0;
+
+  function nearest(freq){
+    let best = targets[0], bd = Math.abs(freq - targets[0].freq);
+    for(const t of targets){
+      const d = Math.abs(freq - t.freq);
+      if(d < bd){ bd = d; best = t; }
+    }
+    return {target: best, dist: bd};
+  }
+
+  function render(){
+    phase += 0.045;
+    const freq = parseInt(freqInput.value, 10);
+    const {target, dist} = nearest(freq);
+    const tuned = dist <= 10;
+    const intensity = Math.max(0, 1 - dist / 45);
+    const amp = 8 + intensity * 36;
+    const color = tuned ? target.color : '#5B5049';
+
+    let d = '';
+    const W = 600;
+    for(let x = 0; x <= W; x += 6){
+      const y = 60 + Math.sin((x / W) * Math.PI * 6 + phase) * amp;
+      d += (x === 0 ? 'M' : 'L') + x + ',' + y.toFixed(1) + ' ';
+    }
+    wavePath.setAttribute('d', d);
+    wavePath.setAttribute('stroke', color);
+    heroGlow.style.background = 'radial-gradient(circle, ' + color + '2e, transparent 70%)';
+
+    freqValue.textContent = freq;
+    freqStatus.textContent = tuned ? ('Accordé — ' + target.name + ' (×2 vitesse)') : 'Non accordé';
+    freqStatus.style.color = tuned ? color : 'var(--ink-dim)';
+
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+</script>
+
+</body>
+</html>
