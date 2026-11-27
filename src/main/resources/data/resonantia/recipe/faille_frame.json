@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NON",
+    "OOO",
+    "NON"
+  ],
+  "key": {
+    "N": { "item": "resonantia:fragment_nebulite" },
+    "O": { "item": "minecraft:obsidian" }
+  },
+  "result": { "id": "resonantia:faille_frame", "count": 2 }
+}

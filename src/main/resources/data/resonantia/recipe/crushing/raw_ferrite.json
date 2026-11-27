@@ -1,0 +1,6 @@
+{
+  "type": "resonantia:crushing",
+  "ingredient": { "item": "resonantia:raw_ferrite" },
+  "result": { "id": "resonantia:fragment_ferrite", "count": 2 },
+  "frequency": 30
+}

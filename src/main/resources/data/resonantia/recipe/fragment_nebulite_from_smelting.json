@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": { "item": "resonantia:raw_nebulite" },
+  "result": { "id": "resonantia:fragment_nebulite", "count": 1 },
+  "experience": 1.2,
+  "cookingtime": 200
+}

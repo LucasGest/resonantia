@@ -1,0 +1,6 @@
+{
+  "type": "resonantia:crushing",
+  "ingredient": { "item": "resonantia:raw_nebulite" },
+  "result": { "id": "resonantia:fragment_nebulite", "count": 2 },
+  "frequency": 40
+}

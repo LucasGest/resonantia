@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FRF",
+    "FFF"
+  ],
+  "key": {
+    "F": { "item": "resonantia:fragment_ferrite" },
+    "R": { "item": "minecraft:redstone_block" }
+  },
+  "result": { "id": "resonantia:battery", "count": 1 }
+}

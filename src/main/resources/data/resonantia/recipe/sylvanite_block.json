@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "FFF", "FFF", "FFF" ],
+  "key": { "F": { "item": "resonantia:fragment_sylvanite" } },
+  "result": { "id": "resonantia:sylvanite_block", "count": 1 }
+}

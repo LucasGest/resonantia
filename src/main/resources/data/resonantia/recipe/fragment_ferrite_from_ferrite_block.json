@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [ { "item": "resonantia:ferrite_block" } ],
+  "result": { "id": "resonantia:fragment_ferrite", "count": 9 }
+}

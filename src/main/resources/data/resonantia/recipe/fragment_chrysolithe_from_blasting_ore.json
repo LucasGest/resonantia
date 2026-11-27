@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "resonantia:chrysolithe_ore"
+  },
+  "result": {
+    "id": "resonantia:fragment_chrysolithe",
+    "count": 1
+  },
+  "experience": 0.7,
+  "cookingtime": 100
+}

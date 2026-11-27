@@ -1,0 +1,6 @@
+{
+  "type": "resonantia:crushing",
+  "ingredient": { "item": "resonantia:raw_sylvanite" },
+  "result": { "id": "resonantia:fragment_sylvanite", "count": 2 },
+  "frequency": 70
+}

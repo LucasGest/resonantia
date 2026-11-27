@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#resonantia:nebulite_biomes",
+  "features": "resonantia:nebulite_ore",
+  "step": "underground_ores"
+}

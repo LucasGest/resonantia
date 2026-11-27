@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "resonantia:fragment_ferrite" },
+    { "item": "minecraft:redstone" },
+    { "item": "minecraft:redstone" }
+  ],
+  "result": { "id": "resonantia:cable", "count": 8 }
+}

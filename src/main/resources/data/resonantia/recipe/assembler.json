@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "CBC",
+    "FFF"
+  ],
+  "key": {
+    "F": { "item": "resonantia:fragment_sylvanite" },
+    "C": { "item": "resonantia:concasseur" },
+    "B": { "item": "resonantia:battery" }
+  },
+  "result": { "id": "resonantia:assembler", "count": 1 }
+}

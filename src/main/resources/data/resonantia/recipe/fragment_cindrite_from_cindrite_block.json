@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [ { "item": "resonantia:cindrite_block" } ],
+  "result": { "id": "resonantia:fragment_cindrite", "count": 9 }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "CIC",
+    "FFF"
+  ],
+  "key": {
+    "F": { "item": "resonantia:fragment_ferrite" },
+    "C": { "item": "minecraft:cobblestone" },
+    "I": { "item": "resonantia:fragment_chrysolithe" }
+  },
+  "result": { "id": "resonantia:concasseur", "count": 1 }
+}
