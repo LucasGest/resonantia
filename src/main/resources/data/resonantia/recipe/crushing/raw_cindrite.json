@@ -1,0 +1,6 @@
+{
+  "type": "resonantia:crushing",
+  "ingredient": { "item": "resonantia:raw_cindrite" },
+  "result": { "id": "resonantia:fragment_cindrite", "count": 2 },
+  "frequency": 90
+}

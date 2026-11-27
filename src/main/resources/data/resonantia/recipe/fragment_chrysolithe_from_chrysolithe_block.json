@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "resonantia:chrysolithe_block" }
+  ],
+  "result": {
+    "id": "resonantia:fragment_chrysolithe",
+    "count": 9
+  }
+}

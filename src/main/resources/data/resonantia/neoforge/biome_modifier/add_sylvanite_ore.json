@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#resonantia:sylvanite_biomes",
+  "features": "resonantia:sylvanite_ore",
+  "step": "underground_ores"
+}

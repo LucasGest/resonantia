@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "FFF", "FFF", "FFF" ],
+  "key": { "F": { "item": "resonantia:fragment_ferrite" } },
+  "result": { "id": "resonantia:ferrite_block", "count": 1 }
+}

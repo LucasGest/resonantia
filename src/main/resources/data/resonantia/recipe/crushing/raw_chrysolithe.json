@@ -1,0 +1,6 @@
+{
+  "type": "resonantia:crushing",
+  "ingredient": { "item": "resonantia:raw_chrysolithe" },
+  "result": { "id": "resonantia:fragment_chrysolithe", "count": 2 },
+  "frequency": 50
+}

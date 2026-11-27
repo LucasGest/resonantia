@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "CFC",
+    "FRF"
+  ],
+  "key": {
+    "F": { "item": "resonantia:fragment_ferrite" },
+    "C": { "item": "minecraft:cobblestone" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result": { "id": "resonantia:generator", "count": 1 }
+}

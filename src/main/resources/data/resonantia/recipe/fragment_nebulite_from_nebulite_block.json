@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [ { "item": "resonantia:nebulite_block" } ],
+  "result": { "id": "resonantia:fragment_nebulite", "count": 9 }
+}

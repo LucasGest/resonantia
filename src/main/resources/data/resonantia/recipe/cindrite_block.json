@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "FFF", "FFF", "FFF" ],
+  "key": { "F": { "item": "resonantia:fragment_cindrite" } },
+  "result": { "id": "resonantia:cindrite_block", "count": 1 }
+}

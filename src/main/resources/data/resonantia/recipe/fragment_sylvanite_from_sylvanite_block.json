@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [ { "item": "resonantia:sylvanite_block" } ],
+  "result": { "id": "resonantia:fragment_sylvanite", "count": 9 }
+}

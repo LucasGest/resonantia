@@ -1,0 +1,26 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Runs (mondes de test, logs)
+run/
+run-data/
+
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

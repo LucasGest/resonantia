@@ -1,0 +1,7 @@
+{
+  "type": "resonantia:assembling",
+  "ingredient1": { "item": "resonantia:fragment_chrysolithe" },
+  "ingredient2": { "item": "resonantia:fragment_ferrite" },
+  "ingredient3": { "item": "resonantia:fragment_sylvanite" },
+  "result": { "id": "resonantia:resonant_pickaxe", "count": 1 }
+}

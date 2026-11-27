@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": { "item": "resonantia:cindrite_ore" },
+  "result": { "id": "resonantia:fragment_cindrite", "count": 1 },
+  "experience": 1.0,
+  "cookingtime": 200
+}
