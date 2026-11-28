@@ -27,5 +27,8 @@
   "block.resonantia.nebulite_block": "Bloc de Nébulite",
   "item.resonantia.raw_nebulite": "Nébulite Brute",
   "item.resonantia.fragment_nebulite": "Fragment de Nébulite",
-  "block.resonantia.faille_frame": "Cadre de Faille"
+  "block.resonantia.faille_frame": "Cadre de Faille",
+  "gui.resonantia.energy": "%s / %s FE",
+  "gui.resonantia.burn_time": "Combustion : encore %s s",
+  "gui.resonantia.not_burning": "À l'arrêt"
 }

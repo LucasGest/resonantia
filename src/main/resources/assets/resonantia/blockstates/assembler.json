@@ -1,1 +1,8 @@
-{ "variants": { "": { "model": "resonantia:block/assembler" } } }
+{
+  "variants": {
+    "facing=north": { "model": "resonantia:block/assembler" },
+    "facing=east": { "model": "resonantia:block/assembler", "y": 90 },
+    "facing=south": { "model": "resonantia:block/assembler", "y": 180 },
+    "facing=west": { "model": "resonantia:block/assembler", "y": 270 }
+  }
+}

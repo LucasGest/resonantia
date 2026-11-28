@@ -31,8 +31,12 @@ public class ConcasseurMenu extends AbstractContainerMenu {
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), ConcasseurBlockEntity.SLOT_BATTERY, 8, 17));
 
         this.data = new ContainerData() {
+            // Côté client : valeurs reçues du serveur (la machine locale n'est pas à jour)
+            private final int[] synced = new int[8];
+
             @Override
             public int get(int index) {
+                if (blockEntity.getLevel() != null && blockEntity.getLevel().isClientSide()) return synced[index];
                 return switch (index) {
                     case 0 -> blockEntity.getProgress();
                     case 1 -> blockEntity.getMaxProgress();
@@ -44,7 +48,9 @@ public class ConcasseurMenu extends AbstractContainerMenu {
             }
 
             @Override
-            public void set(int index, int value) {}
+            public void set(int index, int value) {
+                synced[index] = value;
+            }
 
             @Override
             public int getCount() {
@@ -136,5 +142,5 @@ public class ConcasseurMenu extends AbstractContainerMenu {
     public int getMaxProgress() { return data.get(1); }
     public int getEnergy() { return data.get(2); }
     public int getMaxEnergy() { return data.get(3); }
-    public int getFrequency() { return data.get(4); }   // <-- la ligne à ajouter
+    public int getFrequency() { return data.get(4); }
 }

@@ -7,6 +7,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import com.lucanemone.resonantia.block.CableBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -16,6 +18,10 @@ public class CableBlockEntity extends BlockEntity {
 
     private static final int CAPACITY = 4000;
     private static final int TRANSFER_RATE = 400;
+
+    // Nombre de ticks sans énergie : le flux disparaît après un court délai, sans clignoter
+    private static final int EMPTY_DELAY = 10;
+    private int emptyTicks = 0;
 
     private final ResonantiaEnergyStorage energyStorage = new ResonantiaEnergyStorage(CAPACITY, TRANSFER_RATE, TRANSFER_RATE);
 
@@ -54,6 +60,12 @@ public class CableBlockEntity extends BlockEntity {
                     }
                 }
             }
+        }
+
+        be.emptyTicks = be.energyStorage.getEnergyStored() > 0 ? 0 : be.emptyTicks + 1;
+        boolean powered = be.emptyTicks < EMPTY_DELAY;
+        if (state.getValue(CableBlock.POWERED) != powered) {
+            level.setBlock(pos, state.setValue(CableBlock.POWERED, powered), Block.UPDATE_CLIENTS);
         }
 
         be.setChanged();

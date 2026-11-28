@@ -25,8 +25,12 @@ public class GeneratorMenu extends AbstractContainerMenu {
         addSlot(new SlotItemHandler(blockEntity.getItemHandler(), GeneratorBlockEntity.SLOT_BATTERY, 116, 35));
 
         this.data = new ContainerData() {
+            // Côté client : valeurs reçues du serveur (la machine locale n'est pas à jour)
+            private final int[] synced = new int[8];
+
             @Override
             public int get(int index) {
+                if (blockEntity.getLevel() != null && blockEntity.getLevel().isClientSide()) return synced[index];
                 return switch (index) {
                     case 0 -> blockEntity.getBurnTimeRemaining();
                     case 1 -> blockEntity.getBurnTimeTotal();
@@ -37,7 +41,9 @@ public class GeneratorMenu extends AbstractContainerMenu {
             }
 
             @Override
-            public void set(int index, int value) {}
+            public void set(int index, int value) {
+                synced[index] = value;
+            }
 
             @Override
             public int getCount() {

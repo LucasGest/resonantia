@@ -1,9 +1,40 @@
 {
   "parent": "block/block",
-  "textures": { "particle": "resonantia:block/cable", "all": "resonantia:block/cable" },
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "resonantia:block/cable_shell",
+    "t": "resonantia:block/cable_shell"
+  },
   "elements": [
-    { "from": [5, 5, 0], "to": [11, 11, 5], "faces": {
-      "down": {"texture": "#all"}, "up": {"texture": "#all"}, "north": {"texture": "#all"},
-      "south": {"texture": "#all"}, "west": {"texture": "#all"}, "east": {"texture": "#all"} } }
+    {
+      "from": [
+        6,
+        6,
+        0
+      ],
+      "to": [
+        10,
+        10,
+        6
+      ],
+      "shade": true,
+      "faces": {
+        "north": {
+          "texture": "#t"
+        },
+        "east": {
+          "texture": "#t"
+        },
+        "west": {
+          "texture": "#t"
+        },
+        "up": {
+          "texture": "#t"
+        },
+        "down": {
+          "texture": "#t"
+        }
+      }
+    }
   ]
 }

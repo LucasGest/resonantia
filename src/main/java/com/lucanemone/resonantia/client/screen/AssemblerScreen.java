@@ -53,7 +53,18 @@ public class AssemblerScreen extends AbstractContainerScreen<AssemblerMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        guiGraphics.drawString(font, title, 8, 6, 0x404040, false);
-        guiGraphics.drawString(font, playerInventoryTitle, 8, imageHeight - 94, 0x404040, false);
+        guiGraphics.drawString(font, title, 8, 6, 0xC8D0DA, false);
+        guiGraphics.drawString(font, playerInventoryTitle, 8, imageHeight - 94, 0xC8D0DA, false);
+    }
+
+    // Info-bulles : objets des cases, énergie stockée
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        if (isHovering(152, 17, 14, ENERGY_BAR_HEIGHT, mouseX, mouseY)) {
+            guiGraphics.renderTooltip(font, Component.translatable("gui.resonantia.energy", menu.getEnergy(), menu.getMaxEnergy()), mouseX, mouseY);
+        } else {
+            renderTooltip(guiGraphics, mouseX, mouseY);
+        }
     }
 }

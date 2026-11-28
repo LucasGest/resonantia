@@ -35,7 +35,7 @@ public class GeneratorScreen extends AbstractContainerScreen<GeneratorMenu> {
         int burnTotal = menu.getBurnTotal();
         if (burnTotal > 0 && burn > 0) {
             int filled = (int) ((float) burn / burnTotal * FLAME_HEIGHT);
-            guiGraphics.blit(TEXTURE, x + 60, y + 40 + (FLAME_HEIGHT - filled), 176, 0 + (FLAME_HEIGHT - filled), 14, filled, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            guiGraphics.blit(TEXTURE, x + 81, y + 36 + (FLAME_HEIGHT - filled), 176, 0 + (FLAME_HEIGHT - filled), 14, filled, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
 
         int energy = menu.getEnergy();
@@ -54,7 +54,24 @@ public class GeneratorScreen extends AbstractContainerScreen<GeneratorMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        guiGraphics.drawString(font, title, 8, 6, 0x404040, false);
-        guiGraphics.drawString(font, playerInventoryTitle, 8, imageHeight - 94, 0x404040, false);
+        guiGraphics.drawString(font, title, 8, 6, 0xC8D0DA, false);
+        guiGraphics.drawString(font, playerInventoryTitle, 8, imageHeight - 94, 0xC8D0DA, false);
+    }
+
+    // Info-bulles : objets des cases, temps de combustion et énergie stockée
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        if (isHovering(81, 36, 14, FLAME_HEIGHT, mouseX, mouseY)) {
+            int ticks = menu.getBurnProgress();
+            Component text = ticks > 0
+                    ? Component.translatable("gui.resonantia.burn_time", (ticks + 19) / 20)
+                    : Component.translatable("gui.resonantia.not_burning");
+            guiGraphics.renderTooltip(font, text, mouseX, mouseY);
+        } else if (isHovering(152, 17, 14, ENERGY_BAR_HEIGHT, mouseX, mouseY)) {
+            guiGraphics.renderTooltip(font, Component.translatable("gui.resonantia.energy", menu.getEnergy(), menu.getMaxEnergy()), mouseX, mouseY);
+        } else {
+            renderTooltip(guiGraphics, mouseX, mouseY);
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.lucanemone.resonantia.block;
 
+import net.neoforged.neoforge.capabilities.Capabilities;
 import com.lucanemone.resonantia.blockentity.CableBlockEntity;
-import com.lucanemone.resonantia.registry.ResonantiaBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,26 +34,29 @@ public class CableBlock extends BaseEntityBlock {
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
+    // Vrai tant que le câble contient de l'énergie : le flux apparaît dans le tube
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    private static final VoxelShape CORE = Shapes.box(5/16.0, 5/16.0, 5/16.0, 11/16.0, 11/16.0, 11/16.0);
-    private static final VoxelShape ARM_NORTH = Shapes.box(5/16.0, 5/16.0, 0, 11/16.0, 11/16.0, 5/16.0);
-    private static final VoxelShape ARM_SOUTH = Shapes.box(5/16.0, 5/16.0, 11/16.0, 11/16.0, 11/16.0, 1);
-    private static final VoxelShape ARM_WEST = Shapes.box(0, 5/16.0, 5/16.0, 5/16.0, 11/16.0, 11/16.0);
-    private static final VoxelShape ARM_EAST = Shapes.box(11/16.0, 5/16.0, 5/16.0, 1, 11/16.0, 11/16.0);
-    private static final VoxelShape ARM_UP = Shapes.box(5/16.0, 11/16.0, 5/16.0, 11/16.0, 1, 11/16.0);
-    private static final VoxelShape ARM_DOWN = Shapes.box(5/16.0, 0, 5/16.0, 11/16.0, 5/16.0, 11/16.0);
+    private static final VoxelShape CORE = Shapes.box(6/16.0, 6/16.0, 6/16.0, 10/16.0, 10/16.0, 10/16.0);
+    private static final VoxelShape ARM_NORTH = Shapes.box(6/16.0, 6/16.0, 0, 10/16.0, 10/16.0, 6/16.0);
+    private static final VoxelShape ARM_SOUTH = Shapes.box(6/16.0, 6/16.0, 10/16.0, 10/16.0, 10/16.0, 1);
+    private static final VoxelShape ARM_WEST = Shapes.box(0, 6/16.0, 6/16.0, 6/16.0, 10/16.0, 10/16.0);
+    private static final VoxelShape ARM_EAST = Shapes.box(10/16.0, 6/16.0, 6/16.0, 1, 10/16.0, 10/16.0);
+    private static final VoxelShape ARM_UP = Shapes.box(6/16.0, 10/16.0, 6/16.0, 10/16.0, 1, 10/16.0);
+    private static final VoxelShape ARM_DOWN = Shapes.box(6/16.0, 0, 6/16.0, 10/16.0, 6/16.0, 10/16.0);
 
     public CableBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any()
                 .setValue(NORTH, false).setValue(SOUTH, false)
                 .setValue(EAST, false).setValue(WEST, false)
-                .setValue(UP, false).setValue(DOWN, false));
+                .setValue(UP, false).setValue(DOWN, false)
+                .setValue(POWERED, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(NORTH, SOUTH, EAST, WEST, UP, DOWN);
+        builder.add(NORTH, SOUTH, EAST, WEST, UP, DOWN, POWERED);
     }
 
     @Override
@@ -127,10 +130,7 @@ public class CableBlock extends BaseEntityBlock {
 
     private boolean connectsTo(LevelAccessor level, BlockPos pos) {
         if (!(level instanceof Level lvl)) return false;
-        BlockEntity be = lvl.getBlockEntity(pos);
-        if (be == null) return false;
-        return be.getType() == ResonantiaBlockEntities.CABLE.get()
-                || be.getType() == ResonantiaBlockEntities.CONCASSEUR.get()
-                || be.getType() == ResonantiaBlockEntities.GENERATOR.get();
+        // Tout bloc qui stocke de l'énergie (machines du mod, câbles, autres mods)
+        return lvl.getCapability(Capabilities.EnergyStorage.BLOCK, pos, null) != null;
     }
 }

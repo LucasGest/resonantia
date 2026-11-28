@@ -1,5 +1,7 @@
 package com.lucanemone.resonantia.blockentity;
 
+import com.lucanemone.resonantia.block.GeneratorBlock;
+import net.minecraft.world.level.block.Block;
 import com.lucanemone.resonantia.energy.ResonantiaEnergyStorage;
 import com.lucanemone.resonantia.menu.GeneratorMenu;
 import com.lucanemone.resonantia.registry.ResonantiaBlockEntities;
@@ -80,6 +82,11 @@ public class GeneratorBlockEntity extends BlockEntity implements MenuProvider {
         if (be.burnTimeRemaining > 0) {
             be.burnTimeRemaining--;
             be.energyStorage.generateEnergyInternal(FE_PER_TICK);
+        }
+
+        boolean lit = be.burnTimeRemaining > 0;
+        if (state.hasProperty(GeneratorBlock.LIT) && state.getValue(GeneratorBlock.LIT) != lit) {
+            level.setBlock(pos, state.setValue(GeneratorBlock.LIT, lit), Block.UPDATE_CLIENTS);
         }
 
         ItemStack batteryStack = be.itemHandler.getStackInSlot(SLOT_BATTERY);

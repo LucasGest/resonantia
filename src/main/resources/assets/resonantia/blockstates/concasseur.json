@@ -1,1 +1,8 @@
-{ "variants": { "": { "model": "resonantia:block/concasseur" } } }
+{
+  "variants": {
+    "facing=north": { "model": "resonantia:block/concasseur" },
+    "facing=east": { "model": "resonantia:block/concasseur", "y": 90 },
+    "facing=south": { "model": "resonantia:block/concasseur", "y": 180 },
+    "facing=west": { "model": "resonantia:block/concasseur", "y": 270 }
+  }
+}

@@ -1,1 +1,8 @@
-{ "variants": { "": { "model": "resonantia:block/generator" } } }
+{
+  "variants": {
+    "facing=north": { "model": "resonantia:block/generator" },
+    "facing=east": { "model": "resonantia:block/generator", "y": 90 },
+    "facing=south": { "model": "resonantia:block/generator", "y": 180 },
+    "facing=west": { "model": "resonantia:block/generator", "y": 270 }
+  }
+}

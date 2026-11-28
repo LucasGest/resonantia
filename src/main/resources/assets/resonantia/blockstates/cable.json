@@ -1,11 +1,119 @@
 {
   "multipart": [
-    { "apply": { "model": "resonantia:block/cable_core" } },
-    { "when": { "north": "true" }, "apply": { "model": "resonantia:block/cable_arm_north" } },
-    { "when": { "south": "true" }, "apply": { "model": "resonantia:block/cable_arm_south" } },
-    { "when": { "east": "true" },  "apply": { "model": "resonantia:block/cable_arm_east" } },
-    { "when": { "west": "true" },  "apply": { "model": "resonantia:block/cable_arm_west" } },
-    { "when": { "up": "true" },    "apply": { "model": "resonantia:block/cable_arm_up" } },
-    { "when": { "down": "true" },  "apply": { "model": "resonantia:block/cable_arm_down" } }
+    {
+      "apply": {
+        "model": "resonantia:block/cable_core"
+      }
+    },
+    {
+      "when": {
+        "powered": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_core_flux"
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_north"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "powered": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_north_flux"
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_south"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "powered": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_south_flux"
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_east"
+      }
+    },
+    {
+      "when": {
+        "east": "true",
+        "powered": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_east_flux"
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_west"
+      }
+    },
+    {
+      "when": {
+        "west": "true",
+        "powered": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_west_flux"
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_up"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "powered": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_up_flux"
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_down"
+      }
+    },
+    {
+      "when": {
+        "down": "true",
+        "powered": "true"
+      },
+      "apply": {
+        "model": "resonantia:block/cable_arm_down_flux"
+      }
+    }
   ]
 }

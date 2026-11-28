@@ -1,5 +1,6 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": { "all": "resonantia:block/faille_portal" },
-  "render_type": "minecraft:translucent"
+  "variants": {
+    "axis=x": { "model": "resonantia:block/faille_portal_ns" },
+    "axis=z": { "model": "resonantia:block/faille_portal_ew" }
+  }
 }

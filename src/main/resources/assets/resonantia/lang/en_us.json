@@ -27,5 +27,8 @@
   "block.resonantia.nebulite_block": "Block of Nebulite",
   "item.resonantia.raw_nebulite": "Raw Nebulite",
   "item.resonantia.fragment_nebulite": "Nebulite Fragment",
-  "block.resonantia.faille_frame": "Rift Frame"
+  "block.resonantia.faille_frame": "Rift Frame",
+  "gui.resonantia.energy": "%s / %s FE",
+  "gui.resonantia.burn_time": "Burning: %s s left",
+  "gui.resonantia.not_burning": "Not burning"
 }
